@@ -1,5 +1,5 @@
-import { ProfessionalsRepository } from "../../src/domain/application/repositories/professionals-repository";
-import { Professional } from "../../src/domain/enterprise/entities/professional";
+import { ProfessionalsRepository } from "@/domain/application/repositories/professionals-repository";
+import { Professional } from "@/domain/enterprise/entities/professional";
 
 export class InMemoryProfessionalsRepository implements ProfessionalsRepository {
   public items: Professional[] = [];

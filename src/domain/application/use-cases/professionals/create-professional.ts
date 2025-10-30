@@ -6,19 +6,21 @@ import type { UsersRepository } from "../../repositories/users-repository";
 import { Professional } from "@/domain/enterprise/entities/professional";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
-interface CreateProfissionalUseCaseRequest {
+interface CreateProfessionalUseCaseRequest {
   userId: string;
   type: "MEDICO" | "BIOMEDICO" | "ODONTO";
   licenseNumber: string;
   description?: string;
 }
 
-type CreateProfissionalUseCaseResponse = Either<
+type CreateProfessionalUseCaseResponse = Either<
   UserNotFoundError | LicenseNumberAlreadyExistsError,
-  {}
+  {
+    professional: Professional;
+  }
 >;
 
-export class CreateProfissionalUseCase {
+export class CreateProfessionalUseCase {
   constructor(
     private professionalsRepository: ProfessionalsRepository,
     private usersRepository: UsersRepository,
@@ -29,8 +31,8 @@ export class CreateProfissionalUseCase {
     type,
     licenseNumber,
     description,
-  }: CreateProfissionalUseCaseRequest): Promise<CreateProfissionalUseCaseResponse> {
-    const userExists = await this.usersRepository.findByEmail(userId);
+  }: CreateProfessionalUseCaseRequest): Promise<CreateProfessionalUseCaseResponse> {
+    const userExists = await this.usersRepository.findById(userId);
 
     if (!userExists) {
       return makeLeft(new UserNotFoundError());
@@ -51,6 +53,6 @@ export class CreateProfissionalUseCase {
 
     await this.professionalsRepository.save(professional);
 
-    return makeRight(professional);
+    return makeRight({ professional });
   }
 }
