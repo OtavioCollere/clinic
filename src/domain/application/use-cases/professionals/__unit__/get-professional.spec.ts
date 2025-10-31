@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { GetProfessionalUseCase } from "../get-professional";
 import { InMemoryProfessionalsRepository } from "@/test/in-memory-repositories/in-memory-professionals-repository";
 import { makeProfessional } from "@/test/factories/make-professional";
-import { makeUser } from "@/test/factories/make-user";
 import { isRight, unwrapEither } from "@/core/either/either";
 
 describe("GetProfessionalUseCase unit tests", () => {
