@@ -38,4 +38,16 @@ export class InMemoryUsersRepository implements UsersRepository {
 
     return user;
   }
+
+  async getAll(page: number, pageSize: number, query?: string): Promise<User[]> {
+    let results = this.items;
+    if (query) {
+      results = results.filter((item) => {
+        return item.name.includes(query) || item.email.includes(query);
+      });
+    }
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    return results.slice(start, end);
+  }
 }

@@ -6,6 +6,7 @@ export interface UserProps {
   name: string;
   email: string;
   password: string;
+  role: "USER" | "ADMIN";
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -15,6 +16,7 @@ export class User extends Entity<UserProps> {
     const user = new User(
       {
         ...props,
+        role: props.role ?? "USER",
         createdAt: new Date(),
       },
       id,
@@ -26,6 +28,10 @@ export class User extends Entity<UserProps> {
   // ---------- GETTERS ----------
   get name() {
     return this.props.name;
+  }
+
+  get role() {
+    return this.props.role;
   }
 
   get email() {
@@ -47,6 +53,11 @@ export class User extends Entity<UserProps> {
   // ---------- SETTERS ----------
   set name(value: string) {
     this.props.name = value;
+    this.touch();
+  }
+
+  set role(value: "USER" | "ADMIN") {
+    this.props.role = value;
     this.touch();
   }
 
