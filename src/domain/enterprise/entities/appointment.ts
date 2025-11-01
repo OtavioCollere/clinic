@@ -1,5 +1,6 @@
 import { Entity } from "@/core/entities/entity";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import type { Optional } from "@/core/types/optional";
 
 interface AppointmentProps {
   userId: UniqueEntityID;
@@ -7,6 +8,7 @@ interface AppointmentProps {
   name: string;
   description?: string;
   dateHour: Date;
+  duration: number;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -14,6 +16,10 @@ interface AppointmentProps {
 export class Appointment extends Entity<AppointmentProps> {
   get userId() {
     return this.props.userId;
+  }
+
+  get duration() {
+    return this.props.duration;
   }
 
   get professionalId() {
@@ -40,7 +46,7 @@ export class Appointment extends Entity<AppointmentProps> {
     return this.props.updatedAt;
   }
 
-  static create(props: AppointmentProps, id?: UniqueEntityID) {
+  static create(props: Optional<AppointmentProps, "createdAt">, id?: UniqueEntityID) {
     const appointment = new Appointment(
       {
         ...props,
