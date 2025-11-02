@@ -1,8 +1,9 @@
 import { EmailAlreadyExistsError } from "@/core/errors/email-already-exists-error";
-import type { UsersRepository } from "../../repositories/users-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 import { User } from "@/domain/enterprise/entities/user";
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
-import type { HashGenerator } from "../../cryptography/hash-generator";
+import { HashGenerator } from "../../cryptography/hash-generator";
+import { Injectable } from "@nestjs/common";
 
 interface CreateUserUseCaseRequest {
   name: string;
@@ -18,6 +19,7 @@ type CreateUserUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class CreateUserUseCase {
   constructor(
     private usersRepository: UsersRepository,

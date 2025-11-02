@@ -1,4 +1,4 @@
-import type { User } from "@/domain/enterprise/entities/user";
+import { User } from "@/domain/enterprise/entities/user";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

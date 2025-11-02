@@ -16,4 +16,3 @@ export function makeAppointment(override: Partial<AppointmentProps>, id?: Unique
   );
   return appointment;
 }
-

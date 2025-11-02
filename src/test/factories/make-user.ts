@@ -8,6 +8,7 @@ export function makeUser(override: Partial<UserProps>, id?: UniqueEntityID) {
       name: faker.person.fullName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
+      role: "USER",
       ...override,
     },
     id,
