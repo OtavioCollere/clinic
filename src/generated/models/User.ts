@@ -199,6 +199,7 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   professionals?: Prisma.ProfessionalListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
+  clients?: Prisma.ClientListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -211,6 +212,7 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   professionals?: Prisma.ProfessionalOrderByRelationAggregateInput
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
+  clients?: Prisma.ClientOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -226,6 +228,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   professionals?: Prisma.ProfessionalListRelationFilter
   appointments?: Prisma.AppointmentListRelationFilter
+  clients?: Prisma.ClientListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -264,6 +267,7 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   professionals?: Prisma.ProfessionalCreateNestedManyWithoutUserInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -276,6 +280,7 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   professionals?: Prisma.ProfessionalUncheckedCreateNestedManyWithoutUserInput
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -288,6 +293,7 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   professionals?: Prisma.ProfessionalUpdateManyWithoutUserNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -300,6 +306,7 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   professionals?: Prisma.ProfessionalUncheckedUpdateManyWithoutUserNestedInput
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -407,6 +414,20 @@ export type UserUpdateOneRequiredWithoutAppointmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.UserUpdateWithoutAppointmentsInput>, Prisma.UserUncheckedUpdateWithoutAppointmentsInput>
 }
 
+export type UserCreateNestedOneWithoutClientsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutClientsInput, Prisma.UserUncheckedCreateWithoutClientsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClientsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutClientsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutClientsInput, Prisma.UserUncheckedCreateWithoutClientsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClientsInput
+  upsert?: Prisma.UserUpsertWithoutClientsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutClientsInput, Prisma.UserUpdateWithoutClientsInput>, Prisma.UserUncheckedUpdateWithoutClientsInput>
+}
+
 export type UserCreateWithoutProfessionalsInput = {
   id?: string
   name: string
@@ -416,6 +437,7 @@ export type UserCreateWithoutProfessionalsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfessionalsInput = {
@@ -427,6 +449,7 @@ export type UserUncheckedCreateWithoutProfessionalsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfessionalsInput = {
@@ -454,6 +477,7 @@ export type UserUpdateWithoutProfessionalsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfessionalsInput = {
@@ -465,6 +489,7 @@ export type UserUncheckedUpdateWithoutProfessionalsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAppointmentsInput = {
@@ -476,6 +501,7 @@ export type UserCreateWithoutAppointmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   professionals?: Prisma.ProfessionalCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAppointmentsInput = {
@@ -487,6 +513,7 @@ export type UserUncheckedCreateWithoutAppointmentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   professionals?: Prisma.ProfessionalUncheckedCreateNestedManyWithoutUserInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAppointmentsInput = {
@@ -514,6 +541,7 @@ export type UserUpdateWithoutAppointmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   professionals?: Prisma.ProfessionalUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAppointmentsInput = {
@@ -525,6 +553,71 @@ export type UserUncheckedUpdateWithoutAppointmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   professionals?: Prisma.ProfessionalUncheckedUpdateManyWithoutUserNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutClientsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  professionals?: Prisma.ProfessionalCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutClientsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  professionals?: Prisma.ProfessionalUncheckedCreateNestedManyWithoutUserInput
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutClientsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutClientsInput, Prisma.UserUncheckedCreateWithoutClientsInput>
+}
+
+export type UserUpsertWithoutClientsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutClientsInput, Prisma.UserUncheckedUpdateWithoutClientsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutClientsInput, Prisma.UserUncheckedCreateWithoutClientsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutClientsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutClientsInput, Prisma.UserUncheckedUpdateWithoutClientsInput>
+}
+
+export type UserUpdateWithoutClientsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  professionals?: Prisma.ProfessionalUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutClientsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  professionals?: Prisma.ProfessionalUncheckedUpdateManyWithoutUserNestedInput
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -535,11 +628,13 @@ export type UserUncheckedUpdateWithoutAppointmentsInput = {
 export type UserCountOutputType = {
   professionals: number
   appointments: number
+  clients: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   professionals?: boolean | UserCountOutputTypeCountProfessionalsArgs
   appointments?: boolean | UserCountOutputTypeCountAppointmentsArgs
+  clients?: boolean | UserCountOutputTypeCountClientsArgs
 }
 
 /**
@@ -566,6 +661,13 @@ export type UserCountOutputTypeCountAppointmentsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.AppointmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountClientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClientWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -577,6 +679,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   professionals?: boolean | Prisma.User$professionalsArgs<ExtArgs>
   appointments?: boolean | Prisma.User$appointmentsArgs<ExtArgs>
+  clients?: boolean | Prisma.User$clientsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -614,6 +717,7 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   professionals?: boolean | Prisma.User$professionalsArgs<ExtArgs>
   appointments?: boolean | Prisma.User$appointmentsArgs<ExtArgs>
+  clients?: boolean | Prisma.User$clientsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -624,6 +728,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     professionals: Prisma.$ProfessionalPayload<ExtArgs>[]
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
+    clients: Prisma.$ClientPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1029,6 +1134,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   professionals<T extends Prisma.User$professionalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$professionalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfessionalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   appointments<T extends Prisma.User$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  clients<T extends Prisma.User$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1498,6 +1604,30 @@ export type User$appointmentsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
+}
+
+/**
+ * User.clients
+ */
+export type User$clientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Client
+   */
+  select?: Prisma.ClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Client
+   */
+  omit?: Prisma.ClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientInclude<ExtArgs> | null
+  where?: Prisma.ClientWhereInput
+  orderBy?: Prisma.ClientOrderByWithRelationInput | Prisma.ClientOrderByWithRelationInput[]
+  cursor?: Prisma.ClientWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClientScalarFieldEnum | Prisma.ClientScalarFieldEnum[]
 }
 
 /**

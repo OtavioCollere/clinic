@@ -31,3 +31,8 @@ export type Professional = Prisma.ProfessionalModel
  * 
  */
 export type Appointment = Prisma.AppointmentModel
+/**
+ * Model Client
+ * 
+ */
+export type Client = Prisma.ClientModel

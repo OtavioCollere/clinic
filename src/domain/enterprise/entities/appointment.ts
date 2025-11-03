@@ -2,18 +2,18 @@ import { Entity } from "@/core/entities/entity";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import type { Optional } from "@/core/types/optional";
 
-export interface ProcedureProps {
+export interface AppointmentProps {
   userId: UniqueEntityID;
   professionalId: UniqueEntityID;
   name: string;
-  product?: string;
-  value: number;
   description?: string;
+  dateHour: Date;
+  duration: number;
   createdAt: Date;
   updatedAt?: Date;
 }
 
-export class Procedure extends Entity<ProcedureProps> {
+export class Appointment extends Entity<AppointmentProps> {
   get userId() {
     return this.props.userId;
   }
@@ -26,16 +26,16 @@ export class Procedure extends Entity<ProcedureProps> {
     return this.props.name;
   }
 
-  get product() {
-    return this.props.product;
-  }
-
-  get value() {
-    return this.props.value;
-  }
-
   get description() {
     return this.props.description;
+  }
+
+  get dateHour() {
+    return this.props.dateHour;
+  }
+
+  get duration() {
+    return this.props.duration;
   }
 
   get createdAt() {
@@ -46,8 +46,8 @@ export class Procedure extends Entity<ProcedureProps> {
     return this.props.updatedAt;
   }
 
-  static create(props: Optional<ProcedureProps, "createdAt">, id?: UniqueEntityID) {
-    const procedure = new Procedure(
+  static create(props: Optional<AppointmentProps, "createdAt">, id?: UniqueEntityID) {
+    const appointment = new Appointment(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
@@ -55,6 +55,6 @@ export class Procedure extends Entity<ProcedureProps> {
       id,
     );
 
-    return procedure;
+    return appointment;
   }
 }

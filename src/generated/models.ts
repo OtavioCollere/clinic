@@ -10,4 +10,5 @@
 export type * from './models/User'
 export type * from './models/Professional'
 export type * from './models/Appointment'
+export type * from './models/Client'
 export type * from './commonInputTypes'
