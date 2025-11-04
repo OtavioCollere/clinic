@@ -57,7 +57,10 @@ export class Client extends Entity<ClientProps> {
     return this.props.updatedAt;
   }
 
-  static create(props: Optional<ClientProps, "createdAt">, id?: UniqueEntityID) {
+  static create(
+    props: Optional<ClientProps, "createdAt" | "emergencyPhone" | "notes" | "notes">,
+    id?: UniqueEntityID,
+  ) {
     const client = new Client(
       {
         ...props,

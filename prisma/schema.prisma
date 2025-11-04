@@ -71,14 +71,14 @@ model Appointment {
 
 model Client {
   id             String   @id @default(uuid())
-  userId         String
-  address        String?
+  userId         String @unique
+  address        String
   phone          String
   birthDate      DateTime
   cpf            String   @unique
-  profession     String?
+  profession     String
   emergencyPhone String?
-  obs            String?
+  notes            String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt()
 

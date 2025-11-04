@@ -13,6 +13,6 @@ import { GetClientUseCase } from "@/domain/application/use-cases/client/get-clie
   imports: [DatabaseModule, AuthModule, CryptographyModule],
   exports: [],
   providers: [CreateClientUseCase, EditClientUseCase, GetClientUseCase],
-  controllers: [CreateClientController, EditClientController, GetClientController],
+  controllers: [CreateClientController, EditClientController],
 })
 export class HttpModule {}

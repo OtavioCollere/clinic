@@ -2,7 +2,7 @@
 
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../../prisma.service";
-import type { ClientsRepository } from "@/domain/application/repositories/client-repository";
+import { ClientsRepository } from "@/domain/application/repositories/client-repository";
 import { Client } from "@/domain/enterprise/entities/client";
 import { PrismaClientMapper } from "../mappers/prisma-client-mapper";
 
@@ -11,8 +11,10 @@ export class PrismaClientsRepository implements ClientsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findByUserId(userId: string): Promise<Client | null> {
-    const client = await this.prisma.client.findUnique({
-      where: { userId },
+    const client = await this.prisma.client.findFirst({
+      where: {
+        userId,
+      },
     });
 
     if (!client) return null;

@@ -30,6 +30,7 @@ import { ClientPresenter } from "../../presenters/client-presenter";
  * Zod schema for editing an existing client.
  */
 const editClientBodySchema = z.object({
+  clientId: z.string().uuid(),
   userId: z.string().uuid("Invalid userId format."),
   address: z.string().min(1, "Address is required."),
   phone: z.string().min(8).max(15, "Phone must have between 8 and 15 digits."),
@@ -48,7 +49,7 @@ type EditClientBodySchema = z.infer<typeof editClientBodySchema>;
 export class EditClientController {
   constructor(private editClient: EditClientUseCase) {}
 
-  @Patch("/edit/:id")
+  @Patch("/edit")
   @HttpCode(200)
   @ApiOperation({
     summary: "Edit an existing client",
@@ -86,11 +87,12 @@ export class EditClientController {
     description: "Unexpected server error.",
   })
   @UsePipes(new ZodValidationPipe(editClientBodySchema))
-  async handle(@Param("id") id: string, @Body() body: EditClientBodySchema) {
-    const { userId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } = body;
+  async handle(@Body() body: EditClientBodySchema) {
+    const { clientId, userId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } =
+      body;
 
     const result = await this.editClient.execute({
-      clientId: id,
+      clientId,
       userId,
       address,
       phone,

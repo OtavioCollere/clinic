@@ -120,7 +120,7 @@ export const ClientScalarFieldEnum = {
   cpf: 'cpf',
   profession: 'profession',
   emergencyPhone: 'emergencyPhone',
-  obs: 'obs',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
