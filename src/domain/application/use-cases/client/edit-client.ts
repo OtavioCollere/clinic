@@ -1,10 +1,11 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { Client } from "@/domain/enterprise/entities/client";
-import type { UsersRepository } from "../../repositories/users-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { ClientNotFoundError } from "@/core/errors/client-not-found-error";
-import type { ClientsRepository } from "../../repositories/client-repository";
+import { ClientsRepository } from "../../repositories/client-repository";
+import { Injectable } from "@nestjs/common";
 
 interface EditClientUseCaseRequest {
   clientId: string;
@@ -25,6 +26,7 @@ type EditClientUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class EditClientUseCase {
   constructor(
     private clientsRepository: ClientsRepository,

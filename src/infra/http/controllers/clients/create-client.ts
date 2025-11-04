@@ -22,7 +22,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { CreateClientUseCase } from "@/domain/application/use-cases/client/create-client";
+import { CreateClientUseCase } from "@/domain/application/use-cases/client/create-client";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { CpfAlreadyExistsError } from "@/core/errors/cpf-already-exists-error";
 import { ClientPresenter } from "../../presenters/client-presenter";

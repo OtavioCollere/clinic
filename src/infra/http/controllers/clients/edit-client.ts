@@ -21,7 +21,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { EditClientUseCase } from "@/domain/application/use-cases/client/edit-client";
+import { EditClientUseCase } from "@/domain/application/use-cases/client/edit-client";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { ClientNotFoundError } from "@/core/errors/client-not-found-error";
 import { ClientPresenter } from "../../presenters/client-presenter";
