@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { JwtModule } from "@nestjs/jwt";
+import { JwtModule, JwtService } from "@nestjs/jwt";
 import { EnvModule } from "../env/env.module";
 import { EnvService } from "../env/env.service";
 import { APP_GUARD } from "@nestjs/core";
@@ -13,26 +13,18 @@ import { JwtStrategy } from "./jwt-strategy";
       global: true,
       imports: [EnvModule],
       inject: [EnvService],
-      useFactory: (env: EnvService) => {
+      useFactory(env: EnvService) {
         const publicKey = env.get("JWT_PUBLIC_KEY");
         const privateKey = env.get("JWT_PRIVATE_KEY");
 
         return {
           signOptions: { algorithm: "RS256" },
-          privateKey: Buffer.from(privateKey, "base64").toString("utf-8"),
-          publicKey: Buffer.from(publicKey, "base64").toString("utf-8"),
-          verifyOptions: { algorithms: ["RS256"] },
+          privateKey: Buffer.from(privateKey, "base64"),
+          publicKey: Buffer.from(publicKey, "base64"),
         };
       },
     }),
   ],
-  providers: [
-    JwtStrategy,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
-  ],
-  exports: [JwtModule],
+  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }, JwtStrategy, JwtService],
 })
 export class AuthModule {}

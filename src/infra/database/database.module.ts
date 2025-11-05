@@ -6,6 +6,8 @@ import { ProfessionalsRepository } from "@/domain/application/repositories/profe
 import { PrismaProfessionalsRepository } from "./prisma/repositories/prisma-professional-repository";
 import { AppointmentsRepository } from "@/domain/application/repositories/appointment-repository";
 import { PrismaAppointmentsRepository } from "./prisma/repositories/prisma-appointments-repository";
+import { ClientsRepository } from "@/domain/application/repositories/client-repository";
+import { PrismaClientsRepository } from "./prisma/repositories/prisma-clients-repository";
 
 @Module({
   providers: [
@@ -22,7 +24,17 @@ import { PrismaAppointmentsRepository } from "./prisma/repositories/prisma-appoi
       provide: AppointmentsRepository,
       useClass: PrismaAppointmentsRepository,
     },
+    {
+      provide: ClientsRepository,
+      useClass: PrismaClientsRepository,
+    },
   ],
-  exports: [PrismaService, UsersRepository, ProfessionalsRepository, AppointmentsRepository],
+  exports: [
+    PrismaService,
+    UsersRepository,
+    ProfessionalsRepository,
+    AppointmentsRepository,
+    ClientsRepository,
+  ],
 })
 export class DatabaseModule {}

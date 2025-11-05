@@ -1,6 +1,6 @@
-import type { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { User, UserProps } from "@/domain/enterprise/entities/user";
-import type { PrismaService } from "@/infra/database/prisma.service";
+import { PrismaService } from "@/infra/database/prisma.service";
 import { PrismaUserMapper } from "@/infra/database/prisma/mappers/prisma-user-mapper";
 import { faker } from "@faker-js/faker";
 import { Injectable } from "@nestjs/common";

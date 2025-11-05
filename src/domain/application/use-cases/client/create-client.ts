@@ -65,7 +65,7 @@ export class CreateClientUseCase {
       notes,
     });
 
-    await this.clientsRepository.save(client);
+    await this.clientsRepository.create(client);
 
     return makeRight({ client });
   }
