@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated"
@@ -32,8 +29,29 @@ model User {
   updatedAt    DateTime       @updatedAt()
 
   professionals Professional[]
-  appointments  Appointment[]
-  clients       Client[]       // 👈 relação adicionada aqui
+  clients       Client[]
+}
+
+model Client {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  address        String
+  phone          String
+  birthDate      DateTime
+  cpf            String   @unique
+  profession     String
+  emergencyPhone String?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt()
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  appointments Appointment[]
+  procedures   Procedure[]
+  anamneses    Anamnesis[]
+
+  @@index([userId])
 }
 
 model Professional {
@@ -45,15 +63,16 @@ model Professional {
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt()
 
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  appointments Appointment[]
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments  Appointment[]
+  procedures    Procedure[]
 
   @@index([userId])
 }
 
 model Appointment {
   id             String    @id @default(uuid())
-  userId         String
+  clientId       String
   professionalId String
   name           String
   description    String?
@@ -62,27 +81,100 @@ model Appointment {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt()
 
-  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  professional  Professional @relation(fields: [professionalId], references: [id], onDelete: Cascade)
+  client        Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  professional  Professional  @relation(fields: [professionalId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([clientId])
   @@index([professionalId])
 }
 
-model Client {
+model Procedure {
   id             String   @id @default(uuid())
-  userId         String @unique
-  address        String
-  phone          String
-  birthDate      DateTime
-  cpf            String   @unique
-  profession     String
-  emergencyPhone String?
-  notes            String?
+  clientId       String
+  professionalId String
+  name           String
+  product        String?
+  value          Int
+  description    String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt()
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client        Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  professional  Professional  @relation(fields: [professionalId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+  @@index([clientId])
+  @@index([professionalId])
+}
+
+model Anamnesis {
+  id              String   @id @default(uuid())
+  clientId        String
+  hadPreviousAestheticTreatment Boolean
+  botulinumToxin  Boolean
+  botulinumRegion String?
+  filler          Boolean
+  fillerRegion    String?
+  fillerProduct   String?
+  suspensionThreads Boolean
+  suspensionThreadsRegion String?
+  suspensionThreadsProduct String?
+  surgicalLift    Boolean
+  surgicalLiftRegion String?
+  surgicalLiftProduct String?
+  chemicalPeeling Boolean
+  chemicalPeelingRegion String?
+  chemicalPeelingProduct String?
+  laser           Boolean
+  laserRegion     String?
+  laserProduct    String?
+  exposedToHeatOrColdWork Boolean
+
+  smoker                  Boolean
+  circulatoryDisorder     Boolean
+  epilepsy                Boolean
+  regularMenstrualCycle   Boolean
+  regularIntestinalFunction Boolean
+  cardiacAlterations      Boolean
+  hormonalDisorder        Boolean
+  hypoOrHypertension      Boolean
+  renalDisorder           Boolean
+  varicoseVeinsOrLesions  Boolean
+  pregnant                Boolean
+  gestationalWeeks        Int?
+  underMedicalTreatment   Boolean
+  medicalTreatmentDetails String?
+
+  usesMedication          Boolean
+  medicationDetails       String?
+  allergy                 Boolean
+  allergyDetails          String?
+  lactoseIntolerance      Boolean
+  diabetes                String? // "controlled" | "yes" | "no"
+  roacutan                Boolean
+
+  recentSurgery           Boolean
+  recentSurgeryDetails    String?
+  tumorOrPrecancerousLesion Boolean
+  tumorOrLesionDetails    String?
+  skinProblems            Boolean
+  skinProblemsDetails     String?
+  orthopedicProblems      Boolean
+  orthopedicProblemsDetails String?
+  hasBodyOrFacialProsthesis Boolean
+  prosthesisDetails       String?
+  usingAcids              Boolean
+  acidsDetails            String?
+  otherRelevantIssues     String?
+
+  bloodPressure           String?
+  height                  Float?
+  initialWeight           Float?
+  finalWeight             Float?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt()
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
 }

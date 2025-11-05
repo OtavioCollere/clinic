@@ -7,7 +7,7 @@ import { Professional } from "@/domain/enterprise/entities/professional";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
 interface CreateProfessionalUseCaseRequest {
-  userId: string;
+  clientId: string;
   type: "MEDICO" | "BIOMEDICO" | "ODONTO";
   licenseNumber: string;
   description?: string;
@@ -27,12 +27,12 @@ export class CreateProfessionalUseCase {
   ) {}
 
   async execute({
-    userId,
+    clientId,
     type,
     licenseNumber,
     description,
   }: CreateProfessionalUseCaseRequest): Promise<CreateProfessionalUseCaseResponse> {
-    const userExists = await this.usersRepository.findById(userId);
+    const userExists = await this.usersRepository.findById(clientId);
 
     if (!userExists) {
       return makeLeft(new UserNotFoundError());
@@ -45,7 +45,7 @@ export class CreateProfessionalUseCase {
     }
 
     const professional = Professional.create({
-      userId: new UniqueEntityID(userId),
+      clientId: new UniqueEntityID(clientId),
       type,
       licenseNumber,
       description,

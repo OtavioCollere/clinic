@@ -31,7 +31,6 @@ import { ClientPresenter } from "../../presenters/client-presenter";
  */
 const editClientBodySchema = z.object({
   clientId: z.string().uuid(),
-  userId: z.string().uuid("Invalid userId format."),
   address: z.string().min(1, "Address is required."),
   phone: z.string().min(8).max(15, "Phone must have between 8 and 15 digits."),
   birthDate: z.coerce.date(),
@@ -54,16 +53,16 @@ export class EditClientController {
   @ApiOperation({
     summary: "Edit an existing client",
     description:
-      "Updates the details of an existing client. Requires clientId, userId, and valid data fields. " +
+      "Updates the details of an existing client. Requires clientId, clientId, and valid data fields. " +
       "Returns 404 if the client or user does not exist.",
   })
   @ApiBody({
     description: "Client data for update.",
     schema: {
       type: "object",
-      required: ["userId", "address", "phone", "birthDate", "cpf", "profession"],
+      required: ["clientId", "address", "phone", "birthDate", "cpf", "profession"],
       properties: {
-        userId: { type: "string", example: "uuid" },
+        clientId: { type: "string", example: "uuid" },
         address: { type: "string", example: "Rua Nova 456" },
         phone: { type: "string", example: "41999998888" },
         birthDate: { type: "string", example: "2003-10-16T00:00:00.000Z" },
@@ -88,12 +87,10 @@ export class EditClientController {
   })
   @UsePipes(new ZodValidationPipe(editClientBodySchema))
   async handle(@Body() body: EditClientBodySchema) {
-    const { clientId, userId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } =
-      body;
+    const { clientId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } = body;
 
     const result = await this.editClient.execute({
       clientId,
-      userId,
       address,
       phone,
       birthDate,

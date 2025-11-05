@@ -23,7 +23,7 @@ describe("CreateProfessionalUseCase unit tests", () => {
     inMemoryUsersRepository.items.push(user);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       type: "MEDICO",
       licenseNumber: "8778",
       description: "Teste de descrição",
@@ -34,14 +34,14 @@ describe("CreateProfessionalUseCase unit tests", () => {
     expect(isRight(result)).toBe(true);
     if (isRight(result)) {
       expect(inMemoryProfessionalsRepository.items.length).toBe(1);
-      expect(unwrapEither(result).professional.userId.toString()).toBe(user.id.toString());
+      expect(unwrapEither(result).professional.clientId.toString()).toBe(user.id.toString());
       expect(unwrapEither(result).professional.licenseNumber).toEqual("8778");
     }
   });
 
   it("should not create a professional with an invalid user ID", async () => {
     const result = await sut.execute({
-      userId: "non-existing-id",
+      clientId: "non-existing-id",
       type: "MEDICO",
       licenseNumber: "1234",
       description: "irrelevant",
@@ -58,7 +58,7 @@ describe("CreateProfessionalUseCase unit tests", () => {
     const license = "DUP-001";
 
     const first = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       type: "MEDICO",
       licenseNumber: license,
       description: "first",
@@ -66,7 +66,7 @@ describe("CreateProfessionalUseCase unit tests", () => {
     expect(isRight(first)).toBe(true);
 
     const second = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       type: "MEDICO",
       licenseNumber: license,
       description: "second",

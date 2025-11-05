@@ -7,7 +7,7 @@ import { Injectable } from "@nestjs/common";
 export function makeAppointment(override: Partial<AppointmentProps>, id?: UniqueEntityID) {
   const appointment = Appointment.create(
     {
-      userId: new UniqueEntityID(),
+      clientId: new UniqueEntityID(),
       professionalId: new UniqueEntityID(),
       name: "Test Appointment",
       description: "Test description",

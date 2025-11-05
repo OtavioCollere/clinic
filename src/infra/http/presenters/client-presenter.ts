@@ -4,7 +4,7 @@ export class ClientPresenter {
   static toHTTP(client: Client) {
     return {
       id: client.id.toString(),
-      userId: client.userId.toString(),
+      clientId: client.clientId.toString(),
       address: client.address,
       phone: client.phone,
       birthDate: client.birthDate,

@@ -7,7 +7,7 @@ import { Injectable } from "@nestjs/common";
 export function makeClient(override: Partial<ClientProps> = {}, id?: UniqueEntityID) {
   const client = Client.create(
     {
-      userId: new UniqueEntityID(),
+      clientId: new UniqueEntityID(),
       address: "123 Main Street",
       phone: "(11) 99999-9999",
       birthDate: new Date("1990-01-01"),

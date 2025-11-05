@@ -37,7 +37,7 @@ describe("EditAppointmentUseCase unit tests", () => {
     inMemoryProfessionalsRepository.items.push(professional);
 
     const appointment = makeAppointment({
-      userId: user.id,
+      clientId: user.id,
       professionalId: professional.id,
       name: "Consulta inicial",
       duration: 30,
@@ -46,7 +46,7 @@ describe("EditAppointmentUseCase unit tests", () => {
 
     const result = await sut.execute({
       appointmentId: appointment.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: professional.id.toString(),
       name: "Consulta para botox",
       duration: 60,
@@ -74,7 +74,7 @@ describe("EditAppointmentUseCase unit tests", () => {
 
     const result = await sut.execute({
       appointmentId: "non-existing-id",
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: professional.id.toString(),
       name: "Test Appointment",
       duration: 60,
@@ -93,14 +93,14 @@ describe("EditAppointmentUseCase unit tests", () => {
     inMemoryProfessionalsRepository.items.push(professional);
 
     const appointment = makeAppointment({
-      userId: user.id,
+      clientId: user.id,
       professionalId: professional.id,
     });
     inMemoryAppointmentsRepository.items.push(appointment);
 
     const result = await sut.execute({
       appointmentId: appointment.id.toString(),
-      userId: "non-existing-id",
+      clientId: "non-existing-id",
       professionalId: professional.id.toString(),
       name: "Test Appointment",
       duration: 60,
@@ -119,14 +119,14 @@ describe("EditAppointmentUseCase unit tests", () => {
     inMemoryProfessionalsRepository.items.push(professional);
 
     const appointment = makeAppointment({
-      userId: user.id,
+      clientId: user.id,
       professionalId: professional.id,
     });
     inMemoryAppointmentsRepository.items.push(appointment);
 
     const result = await sut.execute({
       appointmentId: appointment.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: "non-existing-id",
       name: "Test Appointment",
       duration: 60,
@@ -151,7 +151,7 @@ describe("EditAppointmentUseCase unit tests", () => {
     inMemoryAppointmentsRepository.items.push(existingAppointment);
 
     const appointment = makeAppointment({
-      userId: user.id,
+      clientId: user.id,
       professionalId: professional.id,
       dateHour: new Date("2024-11-01T10:00:00"),
     });
@@ -159,7 +159,7 @@ describe("EditAppointmentUseCase unit tests", () => {
 
     const result = await sut.execute({
       appointmentId: appointment.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: professional.id.toString(),
       name: "Test Appointment",
       duration: 60,

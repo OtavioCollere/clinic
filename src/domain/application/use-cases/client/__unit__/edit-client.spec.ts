@@ -23,12 +23,12 @@ describe("EditClientUseCase unit tests", () => {
     const user = makeUser({});
     inMemoryUsersRepository.items.push(user);
 
-    const client = makeClient({ userId: user.id });
+    const client = makeClient({ clientId: user.id });
     inMemoryClientsRepository.items.push(client);
 
     const result = await sut.execute({
       clientId: client.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "New Street, 123",
       phone: "99999-8888",
       birthDate: new Date(2003, 9, 16),
@@ -51,7 +51,7 @@ describe("EditClientUseCase unit tests", () => {
 
     const result = await sut.execute({
       clientId: "invalid-id",
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua Teste",
       phone: "11111111",
       birthDate: new Date(2003, 9, 16),
@@ -69,7 +69,7 @@ describe("EditClientUseCase unit tests", () => {
 
     const result = await sut.execute({
       clientId: client.id.toString(),
-      userId: "invalid-user",
+      clientId: "invalid-user",
       address: "Rua Fake",
       phone: "99999999",
       birthDate: new Date(2003, 9, 16),
@@ -85,14 +85,14 @@ describe("EditClientUseCase unit tests", () => {
     const user = makeUser({});
     inMemoryUsersRepository.items.push(user);
 
-    const client1 = makeClient({ userId: user.id, cpf: "11111111111" });
-    const client2 = makeClient({ userId: user.id, cpf: "22222222222" });
+    const client1 = makeClient({ clientId: user.id, cpf: "11111111111" });
+    const client2 = makeClient({ clientId: user.id, cpf: "22222222222" });
 
     inMemoryClientsRepository.items.push(client1, client2);
 
     const result = await sut.execute({
       clientId: client2.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua X",
       phone: "44444444",
       birthDate: new Date(2003, 9, 16),

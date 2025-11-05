@@ -3,7 +3,7 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Optional } from "@/core/types/optional";
 
 export interface ProfessionalProps {
-  userId: UniqueEntityID;
+  clientId: UniqueEntityID;
   type: "MEDICO" | "BIOMEDICO" | "ODONTO";
   licenseNumber: string;
   description?: string;
@@ -28,8 +28,8 @@ export class Professional extends Entity<ProfessionalProps> {
   }
 
   // ---------- GETTERS ----------
-  get userId() {
-    return this.props.userId;
+  get clientId() {
+    return this.props.clientId;
   }
 
   get type(): "MEDICO" | "BIOMEDICO" | "ODONTO" {

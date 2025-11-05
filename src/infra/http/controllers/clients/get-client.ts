@@ -36,7 +36,7 @@ export class GetClientController {
           type: "object",
           properties: {
             id: { type: "string", example: "uuid" },
-            userId: { type: "string", example: "uuid" },
+            clientId: { type: "string", example: "uuid" },
             address: { type: "string", example: "123 Main Street" },
             phone: { type: "string", example: "41996335822" },
             birthDate: { type: "string", example: "2003-10-16T00:00:00.000Z" },

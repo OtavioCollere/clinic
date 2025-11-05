@@ -4,7 +4,7 @@ import type { User } from "@/domain/enterprise/entities/user";
 import type { UsersRepository } from "../../repositories/users-repository";
 
 interface GetUserUseCaseRequest {
-  userId: string;
+  clientId: string;
 }
 
 type GetUserUseCaseResponse = Either<
@@ -17,8 +17,8 @@ type GetUserUseCaseResponse = Either<
 export class GetUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute({ userId }: GetUserUseCaseRequest): Promise<GetUserUseCaseResponse> {
-    const user = await this.usersRepository.findById(userId);
+  async execute({ clientId }: GetUserUseCaseRequest): Promise<GetUserUseCaseResponse> {
+    const user = await this.usersRepository.findById(clientId);
 
     if (!user) {
       return makeLeft(new UserNotFoundError());

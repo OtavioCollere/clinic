@@ -23,7 +23,7 @@ describe("GetUserUseCase unit tests", () => {
     inMemoryUsersRepository.items.push(user);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
     });
 
     expect(isRight(result)).toBeTruthy();
@@ -35,7 +35,7 @@ describe("GetUserUseCase unit tests", () => {
 
   it("should not be able to get a user with an invalid id", async () => {
     const result = await sut.execute({
-      userId: "non-existing-id",
+      clientId: "non-existing-id",
     });
 
     expect(isLeft(result)).toBe(true);

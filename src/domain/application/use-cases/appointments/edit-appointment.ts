@@ -11,7 +11,7 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
 interface EditAppointmentUseCaseRequest {
   appointmentId: string;
-  userId: string;
+  clientId: string;
   professionalId: string;
   name: string;
   duration: number;
@@ -35,7 +35,7 @@ export class EditAppointmentUseCase {
 
   async execute({
     appointmentId,
-    userId,
+    clientId,
     professionalId,
     name,
     duration,
@@ -48,7 +48,7 @@ export class EditAppointmentUseCase {
       return makeLeft(new AppointmentNotFoundError());
     }
 
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(clientId);
 
     if (!user) {
       return makeLeft(new UserNotFoundError());
@@ -74,7 +74,7 @@ export class EditAppointmentUseCase {
 
     const updatedAppointment = Appointment.create(
       {
-        userId: new UniqueEntityID(userId),
+        clientId: new UniqueEntityID(clientId),
         professionalId: new UniqueEntityID(professionalId),
         name,
         duration,

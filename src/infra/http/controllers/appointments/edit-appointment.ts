@@ -34,7 +34,7 @@ import { AppointmentPresenter } from "../../presenters/appointments-presenter";
  */
 const editAppointmentBodySchema = z.object({
   appointmentId: z.string().uuid("Invalid appointmentId format."),
-  userId: z.string().uuid("Invalid userId format."),
+  clientId: z.string().uuid("Invalid clientId format."),
   professionalId: z.string().uuid("Invalid professionalId format."),
   name: z.string(),
   duration: z.coerce.number(),
@@ -55,20 +55,20 @@ export class EditAppointmentController {
   @ApiOperation({
     summary: "Edit an existing appointment",
     description:
-      "Updates an existing appointment with new details. Requires appointmentId, userId, professionalId, name, duration, and dateHour.",
+      "Updates an existing appointment with new details. Requires appointmentId, clientId, professionalId, name, duration, and dateHour.",
   })
   @ApiBody({
     description: "Appointment data required to edit an existing appointment.",
     schema: {
       type: "object",
-      required: ["appointmentId", "userId", "professionalId", "name", "duration", "dateHour"],
+      required: ["appointmentId", "clientId", "professionalId", "name", "duration", "dateHour"],
       properties: {
         appointmentId: {
           type: "string",
           format: "uuid",
           example: "f65b2e34-1fcd-45b2-8a4e-9a11f01b7df5",
         },
-        userId: {
+        clientId: {
           type: "string",
           format: "uuid",
           example: "e4eaaaf2-d142-11e1-b3e4-080027620cdd",
@@ -94,7 +94,7 @@ export class EditAppointmentController {
           type: "object",
           properties: {
             id: { type: "string", example: "uuid" },
-            userId: { type: "string", example: "uuid" },
+            clientId: { type: "string", example: "uuid" },
             professionalId: { type: "string", example: "uuid" },
             name: { type: "string", example: "Therapy session" },
             duration: { type: "number", example: 60 },
@@ -108,7 +108,7 @@ export class EditAppointmentController {
     },
   })
   @ApiNotFoundResponse({
-    description: "The provided appointmentId or userId does not exist.",
+    description: "The provided appointmentId or clientId does not exist.",
     schema: {
       example: {
         statusCode: 404,
@@ -150,11 +150,11 @@ export class EditAppointmentController {
   })
   @UsePipes(new ZodValidationPipe(editAppointmentBodySchema))
   async handle(@Body() body: EditAppointmentBodySchema) {
-    const { appointmentId, userId, professionalId, name, duration, description, dateHour } = body;
+    const { appointmentId, clientId, professionalId, name, duration, description, dateHour } = body;
 
     const result = await this.editAppointment.execute({
       appointmentId,
-      userId,
+      clientId,
       professionalId,
       name,
       duration,

@@ -3,7 +3,7 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import type { Optional } from "@/core/types/optional";
 
 export interface AppointmentProps {
-  userId: UniqueEntityID;
+  clientId: UniqueEntityID;
   professionalId: UniqueEntityID;
   name: string;
   description?: string;
@@ -14,8 +14,8 @@ export interface AppointmentProps {
 }
 
 export class Appointment extends Entity<AppointmentProps> {
-  get userId() {
-    return this.props.userId;
+  get clientId() {
+    return this.props.clientId;
   }
 
   get professionalId() {

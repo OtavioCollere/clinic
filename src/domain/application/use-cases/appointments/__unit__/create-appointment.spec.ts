@@ -37,7 +37,7 @@ describe("CreateAppointmentUseCase unit tests", () => {
     inMemoryProfessionalsRepository.items.push(professional);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: professional.id.toString(),
       name: "Consulta para botox",
       duration: 60,
@@ -48,7 +48,7 @@ describe("CreateAppointmentUseCase unit tests", () => {
     expect(isRight(result)).toBeTruthy();
     if (isRight(result)) {
       expect(inMemoryAppointmentsRepository.items[0].name).toEqual("Consulta para botox");
-      expect(unwrapEither(result).appointment.userId.toString()).toEqual(user.id.toString());
+      expect(unwrapEither(result).appointment.clientId.toString()).toEqual(user.id.toString());
     }
   });
 
@@ -57,7 +57,7 @@ describe("CreateAppointmentUseCase unit tests", () => {
     inMemoryProfessionalsRepository.items.push(professional);
 
     const result = await sut.execute({
-      userId: "non-existing-id",
+      clientId: "non-existing-id",
       professionalId: professional.id.toString(),
       name: "Test Appointment",
       duration: 60,
@@ -73,7 +73,7 @@ describe("CreateAppointmentUseCase unit tests", () => {
     inMemoryUsersRepository.items.push(user);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: "non-existing-id",
       name: "Test Appointment",
       duration: 60,
@@ -98,7 +98,7 @@ describe("CreateAppointmentUseCase unit tests", () => {
     inMemoryAppointmentsRepository.items.push(appointment);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       professionalId: professional.id.toString(),
       name: "Test Appointment",
       duration: 60,

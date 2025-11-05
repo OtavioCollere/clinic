@@ -6,8 +6,8 @@ import { Client } from "@/domain/enterprise/entities/client";
 export class InMemoryClientsRepository implements ClientsRepository {
   public items: Client[] = [];
 
-  async findByUserId(userId: string): Promise<Client | null> {
-    const client = this.items.find((item) => item.userId.toString() === userId);
+  async findByUserId(clientId: string): Promise<Client | null> {
+    const client = this.items.find((item) => item.clientId.toString() === clientId);
     return client || null;
   }
 

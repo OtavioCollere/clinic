@@ -4,7 +4,7 @@ export class AppointmentPresenter {
   static toHTTP(appointment: Appointment) {
     return {
       id: appointment.id.toString(),
-      userId: appointment.userId.toString(),
+      clientId: appointment.clientId.toString(),
       professionalId: appointment.professionalId.toString(),
       name: appointment.name,
       description: appointment.description,

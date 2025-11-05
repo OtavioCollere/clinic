@@ -8,7 +8,7 @@ export class PrismaProfessionalMapper {
   static toDomain(raw: PrismaProfessional): Professional {
     return Professional.create(
       {
-        userId: new UniqueEntityID(raw.userId),
+        clientId: new UniqueEntityID(raw.clientId),
         type: raw.type as ProfessionalType,
         licenseNumber: raw.licenseNumber,
         description: raw.description ?? undefined,
@@ -20,7 +20,7 @@ export class PrismaProfessionalMapper {
   static toPrisma(professional: Professional): PrismaProfessional {
     return {
       id: professional.id.toString(),
-      userId: professional.userId.toString(),
+      clientId: professional.clientId.toString(),
       type: professional.type,
       licenseNumber: professional.licenseNumber,
       description: professional.description ?? null,

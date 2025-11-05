@@ -8,7 +8,7 @@ export class PrismaAppointmentMapper {
   static toDomain(raw: PrismaAppointment): Appointment {
     return Appointment.create(
       {
-        userId: new UniqueEntityID(raw.userId),
+        clientId: new UniqueEntityID(raw.clientId),
         professionalId: new UniqueEntityID(raw.professionalId),
         name: raw.name,
         description: raw.description ?? undefined,
@@ -22,7 +22,7 @@ export class PrismaAppointmentMapper {
   static toPrisma(appointment: Appointment): PrismaAppointment {
     return {
       id: appointment.id.toString(),
-      userId: appointment.userId.toString(),
+      clientId: appointment.clientId.toString(),
       professionalId: appointment.professionalId.toString(),
       name: appointment.name,
       description: appointment.description ?? null,

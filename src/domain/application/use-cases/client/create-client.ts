@@ -8,7 +8,7 @@ import { CpfAlreadyExistsError } from "@/core/errors/cpf-already-exists-error";
 import { Injectable } from "@nestjs/common";
 
 interface CreateClientUseCaseRequest {
-  userId: string;
+  clientId: string;
   address: string;
   phone: string;
   birthDate: Date;
@@ -33,7 +33,7 @@ export class CreateClientUseCase {
   ) {}
 
   async execute({
-    userId,
+    clientId,
     address,
     phone,
     birthDate,
@@ -42,7 +42,7 @@ export class CreateClientUseCase {
     emergencyPhone,
     notes,
   }: CreateClientUseCaseRequest): Promise<CreateClientUseCaseResponse> {
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(clientId);
 
     if (!user) {
       return makeLeft(new UserNotFoundError());
@@ -55,7 +55,7 @@ export class CreateClientUseCase {
     }
 
     const client = Client.create({
-      userId: new UniqueEntityID(userId),
+      clientId: new UniqueEntityID(clientId),
       address,
       phone,
       birthDate,

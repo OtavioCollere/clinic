@@ -29,11 +29,11 @@ describe("Edit Client (E2E)", () => {
 
   it("[PATCH] /clients/edit/:id", async () => {
     const user = await userFactory.makePrismaUser({});
-    const client = await clientFactory.makePrismaClient({ userId: user.id });
+    const client = await clientFactory.makePrismaClient({ clientId: user.id });
 
     const response = await supertest(app.getHttpServer()).patch(`/clients/edit`).send({
       clientId: client.id.toString(),
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua Nova 123",
       phone: "41999998888",
       birthDate: "2003-10-16T00:00:00.000Z",

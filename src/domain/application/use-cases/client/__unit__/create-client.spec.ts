@@ -22,7 +22,7 @@ describe("CreateClientUseCase unit tests", () => {
     inMemoryUsersRepository.items.push(user);
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua Fake",
       phone: "41996335822",
       birthDate: new Date(2003, 9, 16),
@@ -33,13 +33,13 @@ describe("CreateClientUseCase unit tests", () => {
     expect(isRight(result)).toBeTruthy();
     if (isRight(result)) {
       expect(inMemoryClientsRepository.items[0].cpf).toEqual("08898972771");
-      expect(unwrapEither(result).client.userId).toEqual(user.id);
+      expect(unwrapEither(result).client.clientId).toEqual(user.id);
     }
   });
 
   it("should not create a client with a non-existing user ID", async () => {
     const result = await sut.execute({
-      userId: "non-existing-id",
+      clientId: "non-existing-id",
       address: "Rua Fake",
       phone: "41996335822",
       birthDate: new Date(2003, 9, 16),
@@ -56,7 +56,7 @@ describe("CreateClientUseCase unit tests", () => {
     inMemoryUsersRepository.items.push(user);
 
     await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua 1",
       phone: "1111111111",
       birthDate: new Date(2003, 9, 16),
@@ -65,7 +65,7 @@ describe("CreateClientUseCase unit tests", () => {
     });
 
     const result = await sut.execute({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua 2",
       phone: "2222222222",
       birthDate: new Date(2003, 9, 16),

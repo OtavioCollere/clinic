@@ -30,7 +30,7 @@ describe("Register  (E2E)", () => {
     const user = await userFactory.makePrismaUser({});
 
     const result = await supertest(app.getHttpServer()).post("/clients/create").send({
-      userId: user.id.toString(),
+      clientId: user.id.toString(),
       address: "Rua XYZ",
       phone: "41996335828",
       birthDate: "2003-10-16T00:00:00.000Z",

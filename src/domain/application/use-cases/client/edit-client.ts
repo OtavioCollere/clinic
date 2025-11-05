@@ -9,7 +9,7 @@ import { Injectable } from "@nestjs/common";
 
 interface EditClientUseCaseRequest {
   clientId: string;
-  userId: string;
+  clientId: string;
   address: string;
   phone: string;
   birthDate: Date;
@@ -35,7 +35,7 @@ export class EditClientUseCase {
 
   async execute({
     clientId,
-    userId,
+    clientId,
     address,
     phone,
     birthDate,
@@ -50,7 +50,7 @@ export class EditClientUseCase {
       return makeLeft(new ClientNotFoundError());
     }
 
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(clientId);
 
     if (!user) {
       return makeLeft(new UserNotFoundError());
@@ -64,7 +64,7 @@ export class EditClientUseCase {
 
     const updatedClient = Client.create(
       {
-        userId: new UniqueEntityID(userId),
+        clientId: new UniqueEntityID(clientId),
         address,
         phone,
         birthDate,

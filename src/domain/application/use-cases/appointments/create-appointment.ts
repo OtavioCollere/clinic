@@ -9,7 +9,7 @@ import { InvalidDurationError } from "@/core/errors/invalid-duration-error";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
 interface CreateAppointmentUseCaseRequest {
-  userId: string;
+  clientId: string;
   professionalId: string;
   name: string;
   duration: number;
@@ -32,14 +32,14 @@ export class CreateAppointmentUseCase {
   ) {}
 
   async execute({
-    userId,
+    clientId,
     professionalId,
     name,
     duration,
     description,
     dateHour,
   }: CreateAppointmentUseCaseRequest): Promise<CreateAppointmentUseCaseResponse> {
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(clientId);
 
     if (!user) {
       return makeLeft(new UserNotFoundError());
@@ -64,7 +64,7 @@ export class CreateAppointmentUseCase {
     }
 
     const appointment = Appointment.create({
-      userId: new UniqueEntityID(userId),
+      clientId: new UniqueEntityID(clientId),
       professionalId: new UniqueEntityID(professionalId),
       name,
       duration,

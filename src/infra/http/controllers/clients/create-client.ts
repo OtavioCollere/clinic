@@ -32,7 +32,7 @@ import { ClientPresenter } from "../../presenters/client-presenter";
  * Self-contained and used only within this controller.
  */
 const createClientBodySchema = z.object({
-  userId: z.string().uuid("Invalid userId format."),
+  clientId: z.string().uuid("Invalid clientId format."),
   address: z.string().min(1, "Address is required."),
   phone: z.string().min(8).max(15, "Phone must have between 8 and 15 digits."),
   birthDate: z.coerce.date(),
@@ -55,16 +55,20 @@ export class CreateClientController {
   @ApiOperation({
     summary: "Create a new client",
     description:
-      "Registers a new client linked to a valid user. Requires userId, address, phone, birthDate, CPF, and profession. " +
+      "Registers a new client linked to a valid user. Requires clientId, address, phone, birthDate, CPF, and profession. " +
       "If the provided user or CPF already exists, appropriate errors are returned.",
   })
   @ApiBody({
     description: "Client data required to create a new client record.",
     schema: {
       type: "object",
-      required: ["userId", "address", "phone", "birthDate", "cpf", "profession"],
+      required: ["clientId", "address", "phone", "birthDate", "cpf", "profession"],
       properties: {
-        userId: { type: "string", format: "uuid", example: "e4eaaaf2-d142-11e1-b3e4-080027620cdd" },
+        clientId: {
+          type: "string",
+          format: "uuid",
+          example: "e4eaaaf2-d142-11e1-b3e4-080027620cdd",
+        },
         address: { type: "string", example: "123 Main Street" },
         phone: { type: "string", example: "41996335822" },
         birthDate: { type: "string", format: "date-time", example: "2003-10-16T00:00:00.000Z" },
@@ -84,7 +88,7 @@ export class CreateClientController {
           type: "object",
           properties: {
             id: { type: "string", example: "uuid" },
-            userId: { type: "string", example: "uuid" },
+            clientId: { type: "string", example: "uuid" },
             address: { type: "string", example: "123 Main Street" },
             phone: { type: "string", example: "41996335822" },
             birthDate: { type: "string", example: "2003-10-16T00:00:00.000Z" },
@@ -100,7 +104,7 @@ export class CreateClientController {
     },
   })
   @ApiNotFoundResponse({
-    description: "The provided userId does not exist.",
+    description: "The provided clientId does not exist.",
     schema: {
       example: {
         statusCode: 404,
@@ -141,10 +145,10 @@ export class CreateClientController {
   })
   @UsePipes(new ZodValidationPipe(createClientBodySchema))
   async handle(@Body() body: CreateClientBodySchema) {
-    const { userId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } = body;
+    const { clientId, address, phone, birthDate, cpf, profession, emergencyPhone, notes } = body;
 
     const result = await this.createClient.execute({
-      userId,
+      clientId,
       address,
       phone,
       birthDate,
