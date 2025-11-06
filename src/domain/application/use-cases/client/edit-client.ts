@@ -9,7 +9,6 @@ import { Injectable } from "@nestjs/common";
 
 interface EditClientUseCaseRequest {
   clientId: string;
-  clientId: string;
   address: string;
   phone: string;
   birthDate: Date;
@@ -34,7 +33,6 @@ export class EditClientUseCase {
   ) {}
 
   async execute({
-    clientId,
     clientId,
     address,
     phone,

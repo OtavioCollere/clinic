@@ -1,0 +1,92 @@
+// test/e2e/anamnesis/edit-anamnesis.e2e-spec.ts
+import { AppModule } from "@/app.module";
+import { DatabaseModule } from "@/infra/database/database.module";
+import { PrismaService } from "@/infra/database/prisma.service";
+import { UserFactory } from "@/test/factories/make-user";
+import type { INestApplication } from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import supertest from "supertest";
+import { beforeAll, describe, expect, it } from "vitest";
+
+describe("Edit Anamnesis (E2E)", () => {
+  let app: INestApplication;
+  let prisma: PrismaService;
+  let userFactory: UserFactory;
+
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [AppModule, DatabaseModule],
+      providers: [UserFactory],
+    }).compile();
+
+    app = moduleRef.createNestApplication();
+    prisma = moduleRef.get(PrismaService);
+    userFactory = moduleRef.get(UserFactory);
+    await app.init();
+  });
+
+  it("[PUT] /anamnesis/edit", async () => {
+    const user = await userFactory.makePrismaUser({});
+
+    // cria via endpoint para já obter um registro válido
+    const createRes = await supertest(app.getHttpServer())
+      .post("/anamnesis/create")
+      .send({
+        clientId: user.id.toString(),
+
+        hadPreviousAestheticTreatment: false,
+        botulinumToxin: false,
+        filler: false,
+        suspensionThreads: false,
+        surgicalLift: false,
+        chemicalPeeling: false,
+        laser: false,
+        exposedToHeatOrColdWork: false,
+
+        smoker: false,
+        circulatoryDisorder: false,
+        epilepsy: false,
+        regularMenstrualCycle: true,
+        regularIntestinalFunction: true,
+        cardiacAlterations: false,
+        hormonalDisorder: false,
+        hypoOrHypertension: false,
+        renalDisorder: false,
+        varicoseVeinsOrLesions: false,
+        pregnant: false,
+        underMedicalTreatment: false,
+
+        usesMedication: false,
+        allergy: false,
+        lactoseIntolerance: false,
+        diabetes: null,
+        roacutan: false,
+
+        recentSurgery: false,
+        tumorOrPrecancerousLesion: false,
+        skinProblems: false,
+        orthopedicProblems: false,
+        hasBodyOrFacialProsthesis: false,
+        usingAcids: false,
+      });
+
+    expect(createRes.statusCode).toBe(201);
+    const anamnesisId = createRes.body.anamnesis.id as string;
+
+    const editRes = await supertest(app.getHttpServer())
+      .put("/anamnesis/edit")
+      .send({
+        anamnesisId,
+        smoker: true,
+        recentSurgery: true,
+        recentSurgeryDetails: "Cirurgia recente há 2 meses",
+      });
+
+    expect(editRes.statusCode).toBe(200);
+
+    const onDb = await prisma.anamnesis.findUnique({ where: { id: anamnesisId } });
+    expect(onDb?.smoker).toBe(true);
+    expect(onDb?.recentSurgery).toBe(true);
+    expect(onDb?.recentSurgeryDetails).toBe("Cirurgia recente há 2 meses");
+  });
+});
