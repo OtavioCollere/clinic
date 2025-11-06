@@ -386,35 +386,18 @@ class UserPresenter {
 
 ### Infraestrutura
 - [ ] **CI/CD Pipeline** com GitHub Actions
-- [ ] **Monitoramento** com Sentry e DataDog
-- [ ] **Logs estruturados** com Winston/Pino
-- [ ] **Rate Limiting** para proteção de endpoints
+- [ ] **Monitoramento**
 - [ ] **Cache Redis** para otimização de queries
 
 ### Features
-- [ ] **RBAC Granular** (Role-Based Access Control)
+- [ ] **RBAC** (Role-Based Access Control)
 - [ ] **Notificações** via email e SMS
 - [ ] **Upload de arquivos** (prontuários, exames)
 - [ ] **Relatórios** em PDF
-- [ ] **Webhooks** para integrações
-
-### Qualidade
-- [ ] **Testes de mutação** com Stryker
-- [ ] **Testes de carga** com k6
-- [ ] **SonarQube** para análise estática
-- [ ] **Conventional Commits** e Husky
-
----
 
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido com 💙 utilizando as melhores práticas de engenharia de software.
 
 ---
 
