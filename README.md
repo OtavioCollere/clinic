@@ -56,7 +56,7 @@ src/
 
 ### Princípios Aplicados
 
-- **DDD**: Entidades ricas, Value Objects, agregados e linguagem ubíqua
+- **DDD**
 - **Clean Architecture**: Inversão de dependência, independência de frameworks
 - **SOLID**: Cada classe tem uma responsabilidade única e bem definida
 - **Separation of Concerns**: Camadas isoladas com contratos bem definidos
