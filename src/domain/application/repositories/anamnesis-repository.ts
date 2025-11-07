@@ -1,4 +1,4 @@
-import type { Anamnesis } from "@/domain/enterprise/entities/anamnesis";
+import { Anamnesis } from "@/domain/enterprise/entities/anamnesis";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

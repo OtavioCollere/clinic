@@ -21,7 +21,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { CreateAnamnesisUseCase } from "@/domain/application/use-cases/anamnesis/create-anamnesis";
+import { CreateAnamnesisUseCase } from "@/domain/application/use-cases/anamnesis/create-anamnesis";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { AnamnesisPresenter } from "../../presenters/anamnesis-presenter";
 

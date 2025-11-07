@@ -25,11 +25,7 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    // 👇 Adicione esta linha
-    "types": [
-      "node"
-    ]
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*",

@@ -1,9 +1,9 @@
-import { Encrypter } from "@/domain/application/cryptography/encrypter";
-import { HashComparer } from "@/domain/application/cryptography/hash-comparer";
-import { HashGenerator } from "@/domain/application/cryptography/hash-generator";
 import { Module } from "@nestjs/common";
 import { BcryptHasher } from "./bcrypt-hasher";
 import { JwtEncrypter } from "./jwt-encrypter";
+import { Encrypter } from "@/domain/application/cryptography/encrypter";
+import { HashGenerator } from "@/domain/application/cryptography/hash-generator";
+import { HashComparer } from "@/domain/application/cryptography/hash-comparer";
 
 @Module({
   providers: [

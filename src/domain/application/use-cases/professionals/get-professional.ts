@@ -1,7 +1,8 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
-import type { Professional } from "@/domain/enterprise/entities/professional";
-import type { ProfessionalsRepository } from "../../repositories/professionals-repository";
+import { Professional } from "@/domain/enterprise/entities/professional";
+import { ProfessionalsRepository } from "../../repositories/professionals-repository";
+import { Injectable } from "@nestjs/common";
 
 interface GetProfessionalUseCaseRequest {
   professionalId: string;
@@ -14,6 +15,7 @@ type GetProfessionalUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class GetProfessionalUseCase {
   constructor(private professionalsRepository: ProfessionalsRepository) {}
 

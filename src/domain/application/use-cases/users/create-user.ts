@@ -2,8 +2,8 @@ import { EmailAlreadyExistsError } from "@/core/errors/email-already-exists-erro
 import { UsersRepository } from "../../repositories/users-repository";
 import { User } from "@/domain/enterprise/entities/user";
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
-import { HashGenerator } from "../../cryptography/hash-generator";
 import { Injectable } from "@nestjs/common";
+import { HashGenerator } from "../../cryptography/hash-generator";
 
 interface CreateUserUseCaseRequest {
   name: string;
@@ -38,7 +38,7 @@ export class CreateUserUseCase {
       return makeLeft(new EmailAlreadyExistsError());
     }
 
-    const hashedPassword = await this.hashGenerator.hash(password);
+    const hashedPassword = await this.hashGenerator.hash(password, 8);
 
     const user = User.create({
       name,

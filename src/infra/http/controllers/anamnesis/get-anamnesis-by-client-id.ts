@@ -12,7 +12,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { GetAnamnesisByClientIdUseCase } from "@/domain/application/use-cases/anamnesis/get-anamnesis-by-client-id";
+import { GetAnamnesisByClientIdUseCase } from "@/domain/application/use-cases/anamnesis/get-anamnesis-by-client-id";
 import { AnamnesisPresenter } from "../../presenters/anamnesis-presenter";
 
 const getByClientParamsSchema = z.object({

@@ -1,9 +1,10 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Anamnesis } from "@/domain/enterprise/entities/anamnesis";
-import type { AnamnesisRepository } from "../../repositories/anamnesis-repository";
-import type { UsersRepository } from "../../repositories/users-repository";
+import { AnamnesisRepository } from "../../repositories/anamnesis-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
+import { Injectable } from "@nestjs/common";
 
 interface CreateAnamnesisUseCaseRequest {
   clientId: string;
@@ -83,6 +84,7 @@ type CreateAnamnesisUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class CreateAnamnesisUseCase {
   constructor(
     private anamnesisRepository: AnamnesisRepository,

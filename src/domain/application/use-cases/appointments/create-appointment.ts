@@ -1,12 +1,13 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { Appointment } from "@/domain/enterprise/entities/appointment";
-import type { AppointmentsRepository } from "../../repositories/appointment-repository";
-import type { UsersRepository } from "../../repositories/users-repository";
-import type { ProfessionalsRepository } from "../../repositories/professionals-repository";
+import { AppointmentsRepository } from "../../repositories/appointment-repository";
+import { UsersRepository } from "../../repositories/users-repository";
+import { ProfessionalsRepository } from "../../repositories/professionals-repository";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
 import { InvalidDurationError } from "@/core/errors/invalid-duration-error";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { Injectable } from "@nestjs/common";
 
 interface CreateAppointmentUseCaseRequest {
   clientId: string;
@@ -24,6 +25,7 @@ type CreateAppointmentUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class CreateAppointmentUseCase {
   constructor(
     private appointmentsRepository: AppointmentsRepository,

@@ -1,6 +1,6 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { Anamnesis } from "@/domain/enterprise/entities/anamnesis";
-import type { AnamnesisRepository } from "../../repositories/anamnesis-repository";
+import { AnamnesisRepository } from "../../repositories/anamnesis-repository";
 import { AnamnesisNotFoundError } from "@/core/errors/anamnesis-not-found-error";
 import { Injectable } from "@nestjs/common";
 
@@ -96,39 +96,47 @@ export class EditAnamnesisUseCase {
     const updatedAnamnesis = Anamnesis.create(
       {
         clientId: anamnesis.clientId,
-        hadPreviousAestheticTreatment: updateData.hadPreviousAestheticTreatment ?? anamnesis.hadPreviousAestheticTreatment,
+        hadPreviousAestheticTreatment:
+          updateData.hadPreviousAestheticTreatment ?? anamnesis.hadPreviousAestheticTreatment,
         botulinumToxin: updateData.botulinumToxin ?? anamnesis.botulinumToxin,
         botulinumRegion: updateData.botulinumRegion ?? anamnesis.botulinumRegion,
         filler: updateData.filler ?? anamnesis.filler,
         fillerRegion: updateData.fillerRegion ?? anamnesis.fillerRegion,
         fillerProduct: updateData.fillerProduct ?? anamnesis.fillerProduct,
         suspensionThreads: updateData.suspensionThreads ?? anamnesis.suspensionThreads,
-        suspensionThreadsRegion: updateData.suspensionThreadsRegion ?? anamnesis.suspensionThreadsRegion,
-        suspensionThreadsProduct: updateData.suspensionThreadsProduct ?? anamnesis.suspensionThreadsProduct,
+        suspensionThreadsRegion:
+          updateData.suspensionThreadsRegion ?? anamnesis.suspensionThreadsRegion,
+        suspensionThreadsProduct:
+          updateData.suspensionThreadsProduct ?? anamnesis.suspensionThreadsProduct,
         surgicalLift: updateData.surgicalLift ?? anamnesis.surgicalLift,
         surgicalLiftRegion: updateData.surgicalLiftRegion ?? anamnesis.surgicalLiftRegion,
         surgicalLiftProduct: updateData.surgicalLiftProduct ?? anamnesis.surgicalLiftProduct,
         chemicalPeeling: updateData.chemicalPeeling ?? anamnesis.chemicalPeeling,
         chemicalPeelingRegion: updateData.chemicalPeelingRegion ?? anamnesis.chemicalPeelingRegion,
-        chemicalPeelingProduct: updateData.chemicalPeelingProduct ?? anamnesis.chemicalPeelingProduct,
+        chemicalPeelingProduct:
+          updateData.chemicalPeelingProduct ?? anamnesis.chemicalPeelingProduct,
         laser: updateData.laser ?? anamnesis.laser,
         laserRegion: updateData.laserRegion ?? anamnesis.laserRegion,
         laserProduct: updateData.laserProduct ?? anamnesis.laserProduct,
-        exposedToHeatOrColdWork: updateData.exposedToHeatOrColdWork ?? anamnesis.exposedToHeatOrColdWork,
+        exposedToHeatOrColdWork:
+          updateData.exposedToHeatOrColdWork ?? anamnesis.exposedToHeatOrColdWork,
         smoker: updateData.smoker ?? anamnesis.smoker,
         circulatoryDisorder: updateData.circulatoryDisorder ?? anamnesis.circulatoryDisorder,
         epilepsy: updateData.epilepsy ?? anamnesis.epilepsy,
         regularMenstrualCycle: updateData.regularMenstrualCycle ?? anamnesis.regularMenstrualCycle,
-        regularIntestinalFunction: updateData.regularIntestinalFunction ?? anamnesis.regularIntestinalFunction,
+        regularIntestinalFunction:
+          updateData.regularIntestinalFunction ?? anamnesis.regularIntestinalFunction,
         cardiacAlterations: updateData.cardiacAlterations ?? anamnesis.cardiacAlterations,
         hormonalDisorder: updateData.hormonalDisorder ?? anamnesis.hormonalDisorder,
         hypoOrHypertension: updateData.hypoOrHypertension ?? anamnesis.hypoOrHypertension,
         renalDisorder: updateData.renalDisorder ?? anamnesis.renalDisorder,
-        varicoseVeinsOrLesions: updateData.varicoseVeinsOrLesions ?? anamnesis.varicoseVeinsOrLesions,
+        varicoseVeinsOrLesions:
+          updateData.varicoseVeinsOrLesions ?? anamnesis.varicoseVeinsOrLesions,
         pregnant: updateData.pregnant ?? anamnesis.pregnant,
         gestationalWeeks: updateData.gestationalWeeks ?? anamnesis.gestationalWeeks,
         underMedicalTreatment: updateData.underMedicalTreatment ?? anamnesis.underMedicalTreatment,
-        medicalTreatmentDetails: updateData.medicalTreatmentDetails ?? anamnesis.medicalTreatmentDetails,
+        medicalTreatmentDetails:
+          updateData.medicalTreatmentDetails ?? anamnesis.medicalTreatmentDetails,
         usesMedication: updateData.usesMedication ?? anamnesis.usesMedication,
         medicationDetails: updateData.medicationDetails ?? anamnesis.medicationDetails,
         allergy: updateData.allergy ?? anamnesis.allergy,
@@ -138,13 +146,16 @@ export class EditAnamnesisUseCase {
         roacutan: updateData.roacutan ?? anamnesis.roacutan,
         recentSurgery: updateData.recentSurgery ?? anamnesis.recentSurgery,
         recentSurgeryDetails: updateData.recentSurgeryDetails ?? anamnesis.recentSurgeryDetails,
-        tumorOrPrecancerousLesion: updateData.tumorOrPrecancerousLesion ?? anamnesis.tumorOrPrecancerousLesion,
+        tumorOrPrecancerousLesion:
+          updateData.tumorOrPrecancerousLesion ?? anamnesis.tumorOrPrecancerousLesion,
         tumorOrLesionDetails: updateData.tumorOrLesionDetails ?? anamnesis.tumorOrLesionDetails,
         skinProblems: updateData.skinProblems ?? anamnesis.skinProblems,
         skinProblemsDetails: updateData.skinProblemsDetails ?? anamnesis.skinProblemsDetails,
         orthopedicProblems: updateData.orthopedicProblems ?? anamnesis.orthopedicProblems,
-        orthopedicProblemsDetails: updateData.orthopedicProblemsDetails ?? anamnesis.orthopedicProblemsDetails,
-        hasBodyOrFacialProsthesis: updateData.hasBodyOrFacialProsthesis ?? anamnesis.hasBodyOrFacialProsthesis,
+        orthopedicProblemsDetails:
+          updateData.orthopedicProblemsDetails ?? anamnesis.orthopedicProblemsDetails,
+        hasBodyOrFacialProsthesis:
+          updateData.hasBodyOrFacialProsthesis ?? anamnesis.hasBodyOrFacialProsthesis,
         prosthesisDetails: updateData.prosthesisDetails ?? anamnesis.prosthesisDetails,
         usingAcids: updateData.usingAcids ?? anamnesis.usingAcids,
         acidsDetails: updateData.acidsDetails ?? anamnesis.acidsDetails,

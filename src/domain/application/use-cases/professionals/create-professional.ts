@@ -1,13 +1,14 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
 import { LicenseNumberAlreadyExistsError } from "@/core/errors/license-number-already-exists-error";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
-import type { ProfessionalsRepository } from "../../repositories/professionals-repository";
-import type { UsersRepository } from "../../repositories/users-repository";
+import { ProfessionalsRepository } from "../../repositories/professionals-repository";
+import { UsersRepository } from "../../repositories/users-repository";
 import { Professional } from "@/domain/enterprise/entities/professional";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
+import { Injectable } from "@nestjs/common";
 
 interface CreateProfessionalUseCaseRequest {
-  clientId: string;
+  userId: string;
   type: "MEDICO" | "BIOMEDICO" | "ODONTO";
   licenseNumber: string;
   description?: string;
@@ -20,6 +21,7 @@ type CreateProfessionalUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class CreateProfessionalUseCase {
   constructor(
     private professionalsRepository: ProfessionalsRepository,
@@ -27,12 +29,12 @@ export class CreateProfessionalUseCase {
   ) {}
 
   async execute({
-    clientId,
+    userId,
     type,
     licenseNumber,
     description,
   }: CreateProfessionalUseCaseRequest): Promise<CreateProfessionalUseCaseResponse> {
-    const userExists = await this.usersRepository.findById(clientId);
+    const userExists = await this.usersRepository.findById(userId);
 
     if (!userExists) {
       return makeLeft(new UserNotFoundError());
@@ -45,7 +47,7 @@ export class CreateProfessionalUseCase {
     }
 
     const professional = Professional.create({
-      clientId: new UniqueEntityID(clientId),
+      userId: new UniqueEntityID(userId),
       type,
       licenseNumber,
       description,

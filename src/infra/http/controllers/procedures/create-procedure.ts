@@ -22,8 +22,8 @@ import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
-import type { CreateProcedureUseCase } from "@/domain/application/use-cases/procedures/create-procedure";
-import { ProcedurePresenter } from "../../presenters/procedure-presenter";
+import { CreateProcedureUseCase } from "@/domain/application/use-cases/procedures/create-procedure";
+import { ProcedurePresenter } from "../../presenters/procedures-presenter";
 
 const createProcedureBodySchema = z.object({
   clientId: z.string().uuid("Invalid clientId format."),

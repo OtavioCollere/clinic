@@ -1,8 +1,3 @@
-import { Injectable } from "@nestjs/common";
-
-@Injectable()
-export class HashComparer {
-  async compare(plain: string, hashedPassword: string) {
-    return plain.concat("hashed") === hashedPassword;
-  }
+export abstract class HashComparer {
+  abstract compare(plain: string, hashedPassword: string): Promise<boolean>;
 }

@@ -1,4 +1,4 @@
-import type { Professional } from "@/domain/enterprise/entities/professional";
+import { Professional } from "@/domain/enterprise/entities/professional";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

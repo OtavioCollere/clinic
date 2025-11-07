@@ -11,7 +11,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { GetProceduresByClientIdUseCase } from "@/domain/application/use-cases/procedures/get-procedures-by-client-id";
+import { GetProceduresByClientIdUseCase } from "@/domain/application/use-cases/procedures/get-procedures-by-client-id";
 import { ProcedurePresenter } from "../../presenters/procedures-presenter";
 
 const getByClientParamSchema = z.object({

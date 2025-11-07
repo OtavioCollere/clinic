@@ -1,7 +1,7 @@
 import { makeLeft, makeRight, type Either } from "@/core/either/either";
-import { AppointmentNotFoundError } from "@/core/errors/appointment-not-foundd-error";
-import type { Appointment } from "@/domain/enterprise/entities/appointment";
-import type { AppointmentsRepository } from "../../repositories/appointment-repository";
+import { Appointment } from "@/domain/enterprise/entities/appointment";
+import { AppointmentsRepository } from "../../repositories/appointment-repository";
+import { Injectable } from "@nestjs/common";
 
 interface FetchAppointmentsUseCaseRequest {
   page: number;
@@ -16,6 +16,7 @@ type FetchAppointmentsUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class FetchAppointmentsUseCase {
   constructor(private appointmentsRepository: AppointmentsRepository) {}
 

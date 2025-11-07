@@ -22,7 +22,7 @@ import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
 import { AppointmentNotFoundError } from "@/core/errors/appointment-not-foundd-error";
 import { AppointmentPresenter } from "../../presenters/appointments-presenter";
-import type { GetAppointmentUseCase } from "@/domain/application/use-cases/appointments/get-appointments";
+import { GetAppointmentUseCase } from "@/domain/application/use-cases/appointments/get-appointments";
 
 /**
  * Zod schema for param validation

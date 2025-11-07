@@ -28,7 +28,6 @@ describe("EditClientUseCase unit tests", () => {
 
     const result = await sut.execute({
       clientId: client.id.toString(),
-      clientId: user.id.toString(),
       address: "New Street, 123",
       phone: "99999-8888",
       birthDate: new Date(2003, 9, 16),
@@ -51,7 +50,6 @@ describe("EditClientUseCase unit tests", () => {
 
     const result = await sut.execute({
       clientId: "invalid-id",
-      clientId: user.id.toString(),
       address: "Rua Teste",
       phone: "11111111",
       birthDate: new Date(2003, 9, 16),
@@ -68,7 +66,6 @@ describe("EditClientUseCase unit tests", () => {
     inMemoryClientsRepository.items.push(client);
 
     const result = await sut.execute({
-      clientId: client.id.toString(),
       clientId: "invalid-user",
       address: "Rua Fake",
       phone: "99999999",

@@ -1,6 +1,7 @@
 import { makeRight, type Either } from "@/core/either/either";
-import type { AnamnesisRepository } from "../../repositories/anamnesis-repository";
+import { AnamnesisRepository } from "../../repositories/anamnesis-repository";
 import { Anamnesis } from "@/domain/enterprise/entities/anamnesis";
+import { Injectable } from "@nestjs/common";
 
 interface GetAnamnesisByClientIdUseCaseRequest {
   clientId: string;
@@ -13,6 +14,7 @@ type GetAnamnesisByClientIdUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class GetAnamnesisByClientIdUseCase {
   constructor(private anamnesisRepository: AnamnesisRepository) {}
 

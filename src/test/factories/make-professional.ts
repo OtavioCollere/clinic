@@ -7,7 +7,7 @@ import { Injectable } from "@nestjs/common";
 export function makeProfessional(override: Partial<ProfessionalProps>, id?: UniqueEntityID) {
   const professional = Professional.create(
     {
-      clientId: new UniqueEntityID(),
+      userId: new UniqueEntityID(),
       licenseNumber: "1234",
       description: "some description",
       type: "MEDICO",

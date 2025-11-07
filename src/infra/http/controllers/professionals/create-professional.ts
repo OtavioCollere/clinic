@@ -24,11 +24,11 @@ import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { LicenseNumberAlreadyExistsError } from "@/core/errors/license-number-already-exists-error";
-import type { CreateProfessionalUseCase } from "@/domain/application/use-cases/professionals/create-professional";
+import { CreateProfessionalUseCase } from "@/domain/application/use-cases/professionals/create-professional";
 import { ProfessionalPresenter } from "../../presenters/professional-presenter";
 
 const createProfessionalBodySchema = z.object({
-  clientId: z.string().uuid("Invalid clientId format."),
+  userId: z.string().uuid("Invalid userId format."),
   type: z.enum(["MEDICO", "BIOMEDICO", "ODONTO"]),
   licenseNumber: z.string().min(3),
   description: z.string().optional(),
@@ -53,9 +53,9 @@ export class CreateProfessionalController {
     description: "Professional creation payload.",
     schema: {
       type: "object",
-      required: ["clientId", "type", "licenseNumber"],
+      required: ["userId", "type", "licenseNumber"],
       properties: {
-        clientId: { type: "string", format: "uuid" },
+        userId: { type: "string", format: "uuid" },
         type: { type: "string", enum: ["MEDICO", "BIOMEDICO", "ODONTO"] },
         licenseNumber: { type: "string", example: "CRM12345" },
         description: { type: "string", example: "Dermatologista" },
@@ -79,10 +79,10 @@ export class CreateProfessionalController {
   })
   @UsePipes(new ZodValidationPipe(createProfessionalBodySchema))
   async handle(@Body() body: CreateProfessionalBodySchema) {
-    const { clientId, type, licenseNumber, description } = body;
+    const { userId, type, licenseNumber, description } = body;
 
     const result = await this.createProfessional.execute({
-      clientId,
+      userId,
       type,
       licenseNumber,
       description,

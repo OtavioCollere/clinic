@@ -3,7 +3,7 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import type { Optional } from "@/core/types/optional";
 
 export interface ClientProps {
-  userId: UniqueEntityID;
+  clientId: UniqueEntityID;
   address: string;
   phone: string;
   birthDate: Date;
@@ -17,8 +17,8 @@ export interface ClientProps {
 }
 
 export class Client extends Entity<ClientProps> {
-  get userId() {
-    return this.props.userId;
+  get clientId() {
+    return this.props.clientId;
   }
 
   get address() {

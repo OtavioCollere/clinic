@@ -8,7 +8,7 @@ export class PrismaClientMapper {
   static toDomain(raw: PrismaClient): Client {
     return Client.create(
       {
-        userId: new UniqueEntityID(raw.userId),
+        clientId: new UniqueEntityID(raw.userId),
         address: raw.address,
         phone: raw.phone,
         birthDate: raw.birthDate,
@@ -24,7 +24,7 @@ export class PrismaClientMapper {
   static toPrisma(client: Client): Prisma.ClientUncheckedCreateInput {
     return {
       id: client.id.toString(),
-      userId: client.userId.toString(),
+      userId: client.clientId.toString(),
       address: client.address,
       phone: client.phone,
       birthDate: client.birthDate,

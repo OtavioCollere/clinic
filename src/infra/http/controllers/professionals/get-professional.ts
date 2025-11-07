@@ -21,7 +21,7 @@ import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
-import type { GetProfessionalUseCase } from "@/domain/application/use-cases/professionals/get-professional";
+import { GetProfessionalUseCase } from "@/domain/application/use-cases/professionals/get-professional";
 import { ProfessionalPresenter } from "../../presenters/professional-presenter";
 
 const getProfessionalParamSchema = z.object({

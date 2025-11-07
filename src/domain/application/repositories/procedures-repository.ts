@@ -1,4 +1,4 @@
-import type { Procedure } from "@/domain/enterprise/entities/procedure";
+import { Procedure } from "@/domain/enterprise/entities/procedure";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()

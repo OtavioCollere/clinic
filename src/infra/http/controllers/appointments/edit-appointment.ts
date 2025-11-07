@@ -26,7 +26,7 @@ import { UserNotFoundError } from "@/core/errors/user-not-found-error";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
 import { InvalidDurationError } from "@/core/errors/invalid-duration-error";
 import { AppointmentNotFoundError } from "@/core/errors/appointment-not-foundd-error";
-import type { EditAppointmentUseCase } from "@/domain/application/use-cases/appointments/edit-appointment";
+import { EditAppointmentUseCase } from "@/domain/application/use-cases/appointments/edit-appointment";
 import { AppointmentPresenter } from "../../presenters/appointments-presenter";
 
 /**

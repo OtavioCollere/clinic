@@ -23,10 +23,9 @@ import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
 import { UserNotFoundError } from "@/core/errors/user-not-found-error";
-import { ClientPresenter } from "../../presenters/client-presenter";
 import { ProfessionalNotFoundError } from "@/core/errors/professional-not-found-error";
 import { InvalidDurationError } from "@/core/errors/invalid-duration-error";
-import type { CreateAppointmentUseCase } from "@/domain/application/use-cases/appointments/create-appointment";
+import { CreateAppointmentUseCase } from "@/domain/application/use-cases/appointments/create-appointment";
 import { AppointmentPresenter } from "../../presenters/appointments-presenter";
 
 /**

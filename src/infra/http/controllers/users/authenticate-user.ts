@@ -1,5 +1,5 @@
-import type { AuthenticateUseCase } from '@/domain/application/use-cases/users/authenticate-user';
-import { Public } from '@/infra/auth/public';
+import { AuthenticateUseCase } from "@/domain/application/use-cases/users/authenticate-user";
+import { Public } from "@/infra/auth/public";
 import {
   BadRequestException,
   Body,
@@ -7,13 +7,19 @@ import {
   Post,
   UnauthorizedException,
   UsePipes,
-} from '@nestjs/common';
-import { ApiBody, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse, ApiBadRequestResponse } from '@nestjs/swagger';
-import z from 'zod';
-import { ZodValidationPipe } from '../../pipes/zod-validation-pipe';
-import { isLeft, unwrapEither } from '@/core/either/either';
-import { WrongCredentialsError } from '@/core/errors/wrong-credentials-error';
-
+} from "@nestjs/common";
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+  ApiBadRequestResponse,
+} from "@nestjs/swagger";
+import z from "zod";
+import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
+import { isLeft, unwrapEither } from "@/core/either/either";
+import { WrongCredentialsError } from "@/core/errors/wrong-credentials-error";
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -22,59 +28,57 @@ const authenticateBodySchema = z.object({
 
 type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>;
 
-@Controller('/sessions')
-@ApiTags('Auth')
+@Controller("/sessions")
+@ApiTags("Auth")
 @Public()
 export class AuthenticateController {
   constructor(private authenticateUser: AuthenticateUseCase) {}
 
-  @ApiOperation({ summary: 'Authenticate a user and return JWT tokens' })
+  @ApiOperation({ summary: "Authenticate a user and return JWT tokens" })
   @Post()
   @UsePipes(new ZodValidationPipe(authenticateBodySchema))
   @ApiBody({
-    description: 'Credentials for authentication',
+    description: "Credentials for authentication",
     schema: {
-      type: 'object',
+      type: "object",
       properties: {
-        email: { type: 'string', format: 'email', example: 'otavio@email.com' },
-        password: { type: 'string', minLength: 8, example: '1234' },
+        email: { type: "string", format: "email", example: "otavio@email.com" },
+        password: { type: "string", minLength: 8, example: "1234" },
       },
-      required: ['email', 'password'],
+      required: ["email", "password"],
     },
   })
   @ApiOkResponse({
-    description: 'Authenticated successfully',
+    description: "Authenticated successfully",
     schema: {
-      type: 'object',
+      type: "object",
       properties: {
-        access_token: { type: 'string', description: 'JWT access token' },
-        refresh_token: { type: 'string', description: 'JWT refresh token' },
+        access_token: { type: "string", description: "JWT access token" },
+        refresh_token: { type: "string", description: "JWT refresh token" },
       },
       example: {
-        access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
-        refresh_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+        access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
       },
     },
   })
   @ApiUnauthorizedResponse({
-    description: 'Invalid credentials',
+    description: "Invalid credentials",
     schema: {
       example: {
         statusCode: 401,
-        message: 'Wrong credentials',
-        error: 'Unauthorized',
+        message: "Wrong credentials",
+        error: "Unauthorized",
       },
     },
   })
   @ApiBadRequestResponse({
-    description: 'Validation error (Zod) or other bad request',
+    description: "Validation error (Zod) or other bad request",
     schema: {
       example: {
         statusCode: 400,
-        message: [
-          { path: ['password'], message: 'String must contain at least 8 character(s)' },
-        ],
-        error: 'Bad Request',
+        message: [{ path: ["password"], message: "String must contain at least 8 character(s)" }],
+        error: "Bad Request",
       },
     },
   })

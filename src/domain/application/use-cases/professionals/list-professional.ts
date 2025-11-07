@@ -1,6 +1,7 @@
 import { makeRight, type Either } from "@/core/either/either";
-import type { ProfessionalsRepository } from "../../repositories/professionals-repository";
-import type { Professional } from "@/domain/enterprise/entities/professional";
+import { ProfessionalsRepository } from "../../repositories/professionals-repository";
+import { Professional } from "@/domain/enterprise/entities/professional";
+import { Injectable } from "@nestjs/common";
 
 interface ListProfessionalUseCaseRequest {
   page: number;
@@ -15,6 +16,7 @@ type ListProfessionalUseCaseresponse = Either<
   }
 >;
 
+@Injectable()
 export class ListProfessionalUseCase {
   constructor(private professionalsRepository: ProfessionalsRepository) {}
 

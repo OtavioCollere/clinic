@@ -11,7 +11,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { GetProceduresByProfessionalIdUseCase } from "@/domain/application/use-cases/procedures/get-procedures-by-professional-id";
+import { GetProceduresByProfessionalIdUseCase } from "@/domain/application/use-cases/procedures/get-procedures-by-professional-id";
 import { ProcedurePresenter } from "../../presenters/procedures-presenter";
 
 const getByProfessionalParamSchema = z.object({

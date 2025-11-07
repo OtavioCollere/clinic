@@ -4,7 +4,7 @@ export class ProfessionalPresenter {
   static toHTTP(professional: Professional) {
     return {
       id: professional.id.toString(),
-      clientId: professional.clientId.toString(),
+      userId: professional.userId.toString(),
       type: professional.type,
       licenseNumber: professional.licenseNumber,
       description: professional.description,

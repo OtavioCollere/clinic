@@ -11,7 +11,7 @@ import z from "zod";
 import { ZodValidationPipe } from "../../pipes/zod-validation-pipe";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { FetchAppointmentsUseCase } from "@/domain/application/use-cases/appointments/fetch-appointments";
+import { FetchAppointmentsUseCase } from "@/domain/application/use-cases/appointments/fetch-appointments";
 import { AppointmentPresenter } from "../../presenters/appointments-presenter";
 
 /**

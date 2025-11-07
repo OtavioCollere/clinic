@@ -8,7 +8,7 @@ import {
 } from "@nestjs/swagger";
 import { isLeft, unwrapEither } from "@/core/either/either";
 import { Public } from "@/infra/auth/public";
-import type { GetClientUseCase } from "@/domain/application/use-cases/client/get-client";
+import { GetClientUseCase } from "@/domain/application/use-cases/client/get-client";
 import { ClientNotFoundError } from "@/core/errors/client-not-found-error";
 import { ClientPresenter } from "../../presenters/client-presenter";
 
