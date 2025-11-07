@@ -243,9 +243,18 @@ http://localhost:3333/docs
 
 ### 📸 Preview da Documentação
 
-> **Screenshot do Swagger UI**
-> 
-> _[Inserir imagem da interface Swagger aqui]_
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/eb313f20-8023-47f9-9335-1a593558db60" alt="Tela 1" width="90%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/abb521af-1ddf-4f28-94c7-e463f931c55c" alt="Tela 2" width="90%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a339d015-af2e-4d6f-a540-f4d969c3dcbc" alt="Tela 3" width="90%" />
+</p>
+
 
 A documentação inclui:
 - 📋 Lista completa de endpoints
